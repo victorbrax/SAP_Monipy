@@ -1,0 +1,14 @@
+SOLDIER: Caches Data Cache Hitrate - total | NUMBER: 3 | WAR HOUR: 2022-12-28 13:14:26.038926
+SOLDIER: Caches Catalog Cache Hitrate | NUMBER: 4 | WAR HOUR: 2022-12-28 13:14:26.039942
+SOLDIER: User Tasks Connect Wait | NUMBER: 5 | WAR HOUR: 2022-12-28 13:14:26.040923
+SOLDIER: Last Backup Last successful Complete Data Backup | NUMBER: 8 | WAR HOUR: 2022-12-28 13:14:26.042917
+SOLDIER: Database Analyzer Status Database Analyzer | NUMBER: 12 | WAR HOUR: 2022-12-28 13:14:26.048223
+SOLDIER: DBMRFC and Native SQL DBM Command Execution | NUMBER: 13 | WAR HOUR: 2022-12-28 13:14:26.049223
+SOLDIER: DBMRFC and Native SQL SQL Statement Execution  | NUMBER: 14 | WAR HOUR: 2022-12-28 13:14:26.049223
+SOLDIER: Caches Data Cache Hitrate - total | NUMBER: 3 | WAR HOUR: 2022-12-28 13:15:46.652338
+SOLDIER: Caches Catalog Cache Hitrate | NUMBER: 4 | WAR HOUR: 2022-12-28 13:15:46.652338
+SOLDIER: User Tasks Connect Wait | NUMBER: 5 | WAR HOUR: 2022-12-28 13:15:46.653657
+SOLDIER: Last Backup Last successful Complete Data Backup | NUMBER: 8 | WAR HOUR: 2022-12-28 13:15:46.655850
+SOLDIER: Database Analyzer Status Database Analyzer | NUMBER: 12 | WAR HOUR: 2022-12-28 13:15:46.656922
+SOLDIER: DBMRFC and Native SQL DBM Command Execution | NUMBER: 13 | WAR HOUR: 2022-12-28 13:15:46.657920
+SOLDIER: DBMRFC and Native SQL SQL Statement Execution  | NUMBER: 14 | WAR HOUR: 2022-12-28 13:15:46.658925
