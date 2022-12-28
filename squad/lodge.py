@@ -19,6 +19,11 @@ templs = [
     'update_serv',  # 11
 ]
 
+# > Templates
+templs_n = [
+
+]
+
 # > Commands List
 cED1 = []
 cEQ1 = []
@@ -26,3 +31,6 @@ cEP1 = []
 cGRB = []
 cGRC = []
 cSLM = []
+
+# > Sergeant Bedroom
+s_handlist = {}
