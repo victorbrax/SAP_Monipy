@@ -1,4 +1,4 @@
-from squad.lodge import s_handlist
+from squad.lodge import sgt_list, envs
 import datetime as dt
 
 # MaxDB Monitoring
@@ -24,7 +24,7 @@ def maxdb_moni(env, limit):
     else:
         sd_stts = 0
 
-    s_handlist[infonum] = {
+    sgt_list[infonum] = {
         'SD_Number': infonum, 
         'SD_Name': infoname,
         'SD_Value': val,
@@ -32,7 +32,7 @@ def maxdb_moni(env, limit):
         'Priority': prior,
         'War_Hour': clockpoint
         }
-    return s_handlist[infonum]
+    return sgt_list[infonum]
 def data_use(env, limit):
     content = supervision(env)
     val = float(content[1][28:])
@@ -47,7 +47,7 @@ def data_use(env, limit):
     else:
         sd_stts = 0
 
-        s_handlist[infonum] = {
+        sgt_list[infonum] = {
         'SD_Number': infonum, 
         'SD_Name': infoname,
         'SD_Value': val,
@@ -55,7 +55,7 @@ def data_use(env, limit):
         'Priority': prior,
         'War_Hour': clockpoint
         }
-    return s_handlist[infonum]
+    return sgt_list[infonum]
 def log_use(env, limit):
     content = supervision(env)
     val = float(content[2][26:])
@@ -70,7 +70,7 @@ def log_use(env, limit):
     else:
         sd_stts = 0
 
-    s_handlist[infonum] = {
+    sgt_list[infonum] = {
     'SD_Number': infonum, 
     'SD_Name': infoname,
     'SD_Value': val,
@@ -78,7 +78,7 @@ def log_use(env, limit):
     'Priority': prior,
     'War_Hour': clockpoint
     }
-    return s_handlist[infonum]
+    return sgt_list[infonum]
 def datahitrate(env, limit):
     content = supervision(env)
     val = float(content[3][36:])
@@ -93,7 +93,7 @@ def datahitrate(env, limit):
     else:
         sd_stts = 0
 
-    s_handlist[infonum] = {
+    sgt_list[infonum] = {
     'SD_Number': infonum, 
     'SD_Name': infoname,
     'SD_Value': val,
@@ -101,7 +101,7 @@ def datahitrate(env, limit):
     'Priority': prior,
     'War_Hour': clockpoint
     }
-    return s_handlist[infonum]
+    return sgt_list[infonum]
 def cataloghitrate(env, limit):
     content = supervision(env)
     val = float(content[4][31:])
@@ -116,7 +116,7 @@ def cataloghitrate(env, limit):
     else:
         sd_stts = 0
 
-    s_handlist[infonum] = {
+    sgt_list[infonum] = {
     'SD_Number': infonum, 
     'SD_Name': infoname,
     'SD_Value': val,
@@ -124,7 +124,7 @@ def cataloghitrate(env, limit):
     'Priority': prior,
     'War_Hour': clockpoint
     }
-    return s_handlist[infonum]
+    return sgt_list[infonum]
 def ustask(env, limit):
     content = supervision(env)
     val = float(content[5][26:])
@@ -139,7 +139,7 @@ def ustask(env, limit):
     else:
         sd_stts = 0
 
-    s_handlist[infonum] = {
+    sgt_list[infonum] = {
     'SD_Number': infonum, 
     'SD_Name': infoname,
     'SD_Value': val,
@@ -147,7 +147,7 @@ def ustask(env, limit):
     'Priority': prior,
     'War_Hour': clockpoint
     }
-    return s_handlist[infonum]
+    return sgt_list[infonum]
 def monilog(env, limit):
     content = supervision(env)
     val = float(content[6][30:])
@@ -162,7 +162,7 @@ def monilog(env, limit):
     else:
         sd_stts = 0
 
-    s_handlist[infonum] = {
+    sgt_list[infonum] = {
     'SD_Number': infonum, 
     'SD_Name': infoname,
     'SD_Value': val,
@@ -170,7 +170,7 @@ def monilog(env, limit):
     'Priority': prior,
     'War_Hour': clockpoint
     }
-    return s_handlist[infonum]
+    return sgt_list[infonum]
 def optistcs(env, limit):
     content = supervision(env)
     val = int(content[7][39:])
@@ -185,7 +185,7 @@ def optistcs(env, limit):
     else:
         sd_stts = 0
 
-    s_handlist[infonum] = {
+    sgt_list[infonum] = {
     'SD_Number': infonum, 
     'SD_Name': infoname,
     'SD_Value': val,
@@ -193,7 +193,7 @@ def optistcs(env, limit):
     'Priority': prior,
     'War_Hour': clockpoint
     }
-    return s_handlist[infonum]
+    return sgt_list[infonum]
 def bkp(env, limit):
     content = supervision(env)
     val = int(content[8][51:])
@@ -208,7 +208,7 @@ def bkp(env, limit):
     else:
         sd_stts = 0
 
-    s_handlist[infonum] = {
+    sgt_list[infonum] = {
     'SD_Number': infonum, 
     'SD_Name': infoname,
     'SD_Value': val,
@@ -216,7 +216,7 @@ def bkp(env, limit):
     'Priority': prior,
     'War_Hour': clockpoint
     }
-    return s_handlist[infonum]
+    return sgt_list[infonum]
 def badidx(env, limit):
     content = supervision(env)
     val = int(content[9][36:])
@@ -231,7 +231,7 @@ def badidx(env, limit):
     else:
         sd_stts = 0
 
-    s_handlist[infonum] = {
+    sgt_list[infonum] = {
     'SD_Number': infonum, 
     'SD_Name': infoname,
     'SD_Value': val,
@@ -239,7 +239,7 @@ def badidx(env, limit):
     'Priority': prior,
     'War_Hour': clockpoint
     }
-    return s_handlist[infonum]
+    return sgt_list[infonum]
 def dbanly(env, limit):
     content = supervision(env)
     val = str(content[12][45:])
@@ -254,7 +254,7 @@ def dbanly(env, limit):
     else:
         sd_stts = 0
 
-    s_handlist[infonum] = {
+    sgt_list[infonum] = {
     'SD_Number': infonum, 
     'SD_Name': infoname,
     'SD_Value': val,
@@ -262,7 +262,7 @@ def dbanly(env, limit):
     'Priority': prior,
     'War_Hour': clockpoint
     }
-    return s_handlist[infonum]
+    return sgt_list[infonum]
 def comexec(env, limit):
     content = supervision(env)
     val = str(content[13][46:])
@@ -277,7 +277,7 @@ def comexec(env, limit):
     else:
         sd_stts = 0
 
-    s_handlist[infonum] = {
+    sgt_list[infonum] = {
     'SD_Number': infonum, 
     'SD_Name': infoname,
     'SD_Value': val,
@@ -285,7 +285,7 @@ def comexec(env, limit):
     'Priority': prior,
     'War_Hour': clockpoint
     }
-    return s_handlist[infonum]
+    return sgt_list[infonum]
 def statexec(env, limit):
     content = supervision(env)
     val = str(content[14][47:])
@@ -300,7 +300,7 @@ def statexec(env, limit):
     else:
         sd_stts = 0
 
-    s_handlist[infonum] = {
+    sgt_list[infonum] = {
     'SD_Number': infonum, 
     'SD_Name': infoname,
     'SD_Value': val,
@@ -308,5 +308,20 @@ def statexec(env, limit):
     'Priority': prior,
     'War_Hour': clockpoint
     }
-    return s_handlist[infonum]
+    return sgt_list[infonum]
 
+def sgt_verify():
+    maxdb_moni(envs[2], limit='ONLINE') # State Current State #! ALERT != "ONLINE"
+    data_use(envs[2], limit=92) # Data Area Used Data Space #! ALERT >= 92
+    log_use(envs[2], limit=50) # Log Area Used Log Space #! ALERT >= 50
+    datahitrate(envs[2], limit=90) # Caches Data Cache Hitrate - total #! ALERT >= 90
+    cataloghitrate(envs[2], limit=90) # Caches Catalog Cache Hitrate #! ALERT >= 90
+    ustask(envs[2], limit=10) # User Tasks Connect Wait #! ALERT >= 10
+    monilog(envs[2], limit=1) # Monitor Log Queue Overflows #! ALERT >= 1
+    optistcs(envs[2], limit=8) # Optimizer Statistics Last Collection #! ALERT >= 8
+    bkp(envs[2], limit=2) # Last Backup Last successful Complete Data Backup #! ALERT >= 2 Days
+    badidx(envs[2], limit=1) # Bad Indexes Number of Bad Indexes #! ALERT >= 1
+    dbanly(envs[2], limit='Activated') # Database Analyzer Status Database Analyzer #! ALERT != Activated
+    comexec(envs[2], limit='Commands can be executed') # DBMRFC and Native SQL DBM Command Execution #! ALERT != Commands can be executed 
+    statexec(envs[2], limit='Statements can be executed') # DBMRFC and Native SQL SQL Statement Execution #! ALERT != Statements can be executed
+    return

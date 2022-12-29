@@ -1,6 +1,6 @@
 from squad.lodge import *
 
-def gen_commands(env, templ):
+def cap_gen_commands(env, templ):
     for sapenv in env:
         for count, saptempl in enumerate(templ):
             if sapenv == 'ed1':

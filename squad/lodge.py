@@ -33,4 +33,4 @@ cGRC = []
 cSLM = []
 
 # > Sergeant Bedroom
-s_handlist = {}
+sgt_list = {}
