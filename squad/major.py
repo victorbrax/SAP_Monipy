@@ -1,4 +1,4 @@
 def report_soldier(infoname, infonum, warhour):
-    with open('dumbsoldiers.txt', 'a') as f:
-        f.write(f'SOLDIER: {infoname} | NUMBER: {infonum} | WAR HOUR: {warhour}\n')
+    with open('dumbsoldiers.log', 'a') as f:
+        f.write(f'ERROR | {infonum} | {warhour} | {infoname}\n')
         return

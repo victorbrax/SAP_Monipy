@@ -3,7 +3,7 @@ import datetime as dt
 
 # MaxDB Monitoring
 def supervision(env):
-    with open(f'squad/soldiers-bedroom/{env}_FILE2.txt') as f:
+    with open(f'squad/soldiers-bedroom/{env}_FILE2.txt', 'r') as f:
         content = f.readlines()
         content = [x.strip('\n') for x in content]
         content = [x.strip(' %') for x in content]
