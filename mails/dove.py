@@ -1,6 +1,9 @@
 import smtplib
 import email.message
 
+def gen_message():
+    ""
+
 def enviar_email():
     corpo_email = open(fr'utils\mail.html').read().format() #variaveis dentro do format
 
