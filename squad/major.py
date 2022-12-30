@@ -16,6 +16,3 @@ def punish_soldier(x: dict):
     with open('dumbsoldiers.log', 'a') as log:
         log.write(str(x)+"\n")
     return
-
-def headquarter_warning(x, y, z):
-    ...
