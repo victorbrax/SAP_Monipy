@@ -32,5 +32,8 @@ cGRB = []
 cGRC = []
 cSLM = []
 
+# > Major Bedroom
+dumb_soldiers = {}
+
 # > Sergeant Bedroom
 sgt_list = {}

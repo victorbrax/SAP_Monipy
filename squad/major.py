@@ -1,4 +1,21 @@
-def report_soldier(infoname, infonum, warhour, infovalue):
-    with open('dumbsoldiers.log', 'a') as f:
-        f.write(f'ERROR | {infonum} | {warhour} | {infoname} | {infovalue}\n')
-        return
+import json
+from squad.lodge import dumb_soldiers
+
+def report_soldier(sdNum, sdName, sdVal, sdStts, sdPrio, sdHour):
+    dumb_soldiers[sdNum] = {
+    'SD_Number': sdNum, 
+    'SD_Name': sdName,
+    'SD_Value': sdVal,
+    'SD_Status': sdStts,
+    'SD_Priority': sdPrio,
+    'SD_Hour': sdHour
+    }
+    return(dumb_soldiers[sdNum])
+
+def punish_soldier(x: dict):
+    with open('dumbsoldiers.log', 'a') as log:
+        log.write(str(x)+"\n")
+    return
+
+def headquarter_warning(x, y, z):
+    ...
