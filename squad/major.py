@@ -18,10 +18,7 @@ def register_soldier(env):
     with open(f'barracks/{env}/SD_DOCS/{env}-documents-2.txt', 'r') as file: #! MaxDB (2) Only
         file = file.readlines()
         
-        if file[0] == "No information gathered! System up?":
-            return print(f'The dove not find {env}!')
-
-        else:
+        if file[0] != "No information gathered! System up?": #! You are locked here.
             file = [line.strip('\n') for line in file]
             file = [line.strip(' %') for line in file]
             file = [line.replace(' Days', '') for line in file]
@@ -30,6 +27,8 @@ def register_soldier(env):
                 line = line.split(' = ')
                 new_soldier = Soldier(nm=line[0], num=idx, brrk=env, hr=datetime.datetime.now(), val=line[1])
                 enlist_soldier(env, new_soldier)
+        else:
+            return print(f'The dove not find {env}!')
     return
 
 def punish_soldier(env, SD_Num, SD_Nm, SD_env, SD_hr, SD_val):

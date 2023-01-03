@@ -7,7 +7,7 @@ from squad.soldiers       import *
 
 # > Generate Soldier Documents.
 gen_commands(envs, templates)
-run_commands(envs)
+# run_commands(envs)
 
 # > Check who is already arrested.
 for barracks in envs:
