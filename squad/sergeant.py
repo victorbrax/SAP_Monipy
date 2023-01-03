@@ -16,15 +16,15 @@ def verify_soldier(operator, sd_value, crit_limit):
 def enlist_soldier(env, new_soldier):
     if env == 'ED1':
         ed1_soldiers.append(new_soldier)   
-    if env == 'EQ1':
+    elif env == 'EQ1':
         eq1_soldiers.append(new_soldier)   
-    if env == 'EP1':
+    elif env == 'EP1':
         ep1_soldiers.append(new_soldier)   
-    if env == 'GRB':
+    elif env == 'GRB':
         grb_soldiers.append(new_soldier)   
-    if env == 'GRC':
+    elif env == 'GRC':
         grc_soldiers.append(new_soldier)   
-    if env == 'SLM':
+    elif env == 'SLM':
         slm_soldiers.append(new_soldier)
     return  
 
@@ -32,24 +32,24 @@ def enlist_prisoner(env, npun, credentials):
     if env == 'ED1':
         ed1_prisoners[npun] = credentials
         return ed1_prisoners[npun]
-    if env == 'EQ1':
+    elif env == 'EQ1':
         eq1_prisoners[npun] = credentials
         return eq1_prisoners[npun]
-    if env == 'EP1':
+    elif env == 'EP1':
         ep1_prisoners[npun] = credentials
         return ep1_prisoners[npun]
-    if env == 'GRB':
+    elif env == 'GRB':
         grb_prisoners[npun] = credentials
         return grb_prisoners[npun]
-    if env == 'GRC':
+    elif env == 'GRC':
         grc_prisoners[npun] = credentials
         return grc_prisoners[npun]
-    if env == 'SLM':
+    elif env == 'SLM':
         slm_prisoners[npun] = credentials
         return slm_prisoners[npun]
 
 def check_prisoners(env):
-    with open(f'{env}/PRISON/dumbsoldiers.log', 'r') as log:
+    with open(f'barracks/{env}/PRISON/dumbsoldiers.log', 'r') as log:
         log = log.readlines() # Leia linha por linha
         log = [x.strip('\n') for x in log] # Retire o "\n" do final de cada linha
         _log = [x.split(',') for x in log] # Separe o dicionário separado por vírgulas
@@ -61,32 +61,32 @@ def check_prisoners(env):
                 enlist_prisoner(env, npun, credentials) # Passe o quartel, o numero e as credenciais para o SGT enlista
     return 
 
-def check_quarter(env):
+def what_barracks(env):
     if env == 'ED1':
         return ed1_soldiers   
-    if env == 'EQ1':
+    elif env == 'EQ1':
         return eq1_soldiers   
-    if env == 'EP1':
+    elif env == 'EP1':
         return ep1_soldiers   
-    if env == 'GRB':
+    elif env == 'GRB':
         return grb_soldiers   
-    if env == 'GRC':
+    elif env == 'GRC':
         return grc_soldiers   
-    if env == 'SLM':
+    elif env == 'SLM':
         return slm_soldiers
     return  
 
-def check_prison(env):
+def what_prison(env):
     if env == 'ED1':
         return ed1_prisoners   
-    if env == 'EQ1':
+    elif env == 'EQ1':
         return eq1_prisoners   
-    if env == 'EP1':
+    elif env == 'EP1':
         return ep1_prisoners   
-    if env == 'GRB':
+    elif env == 'GRB':
         return grb_prisoners   
-    if env == 'GRC':
+    elif env == 'GRC':
         return grc_prisoners   
-    if env == 'SLM':
+    elif env == 'SLM':
         return slm_prisoners
     return  
