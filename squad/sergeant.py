@@ -1,18 +1,6 @@
 import datetime
 from squad.accommodations import *
 
-def verify_soldier(operator, sd_value, crit_limit):
-    if operator == 0:
-        verification = str(sd_value) == crit_limit
-        return verification
-
-    elif operator <= 1:
-        verification = float(sd_value) <= crit_limit
-        return verification
-
-    elif operator == 7:
-        return "SKIP"
-
 def enlist_soldier(env, new_soldier):
     if env == 'ED1':
         ed1_soldiers.append(new_soldier)   
@@ -28,7 +16,7 @@ def enlist_soldier(env, new_soldier):
         slm_soldiers.append(new_soldier)
     return  
 
-def enlist_prisoner(env, npun, credentials):
+def add_prisoner(env, npun, credentials):
     if env == 'ED1':
         ed1_prisoners[npun] = credentials
         return ed1_prisoners[npun]
@@ -47,19 +35,6 @@ def enlist_prisoner(env, npun, credentials):
     elif env == 'SLM':
         slm_prisoners[npun] = credentials
         return slm_prisoners[npun]
-
-def check_prisoners(env):
-    with open(f'barracks/{env}/PRISON/dumbsoldiers.log', 'r') as log:
-        log = log.readlines() # Leia linha por linha
-        log = [x.strip('\n') for x in log] # Retire o "\n" do final de cada linha
-        _log = [x.split(',') for x in log] # Separe o dicionário separado por vírgulas
-
-        if len(log) > 0: # Se tiver linhas no log:
-            for line in range(len(log)): # Para cada linha no arquivo .log:
-                npun = int(_log[line][0][11:]) # Obtenha o número desse preso
-                credentials = eval(log[line]) # E as credenciais dele
-                enlist_prisoner(env, npun, credentials) # Passe o quartel, o numero e as credenciais para o SGT enlista
-    return 
 
 def what_barracks(env):
     if env == 'ED1':
@@ -89,4 +64,16 @@ def what_prison(env):
         return grc_prisoners   
     elif env == 'SLM':
         return slm_prisoners
+
+def what_operator(operator, sd_value, crit_limit):
+    if operator == 0:
+        verification = str(sd_value) == crit_limit
+        return verification
+
+    elif operator <= 1:
+        verification = float(sd_value) <= crit_limit
+        return verification
+
+    elif operator == 7:
+        return "SKIP"
     return  
