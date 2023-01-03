@@ -1,4 +1,9 @@
-from squad.lodge import *
+cED1 = []
+cEQ1 = []
+cEP1 = []
+cGRB = []
+cGRC = []
+cSLM = []
 
 def cap_gen_commands(env, templ):
     for sapenv in env:
@@ -16,3 +21,6 @@ def cap_gen_commands(env, templ):
             if sapenv == 'slm':
                 cSLM.append(f'./../src/check_sap_cons {sapenv}_{saptempl} SLM > squad/soldiers-bedroom/{sapenv}_FILE{count+1}.txt')
     return
+
+def gen_commands():
+    ...

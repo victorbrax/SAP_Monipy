@@ -1,326 +1,92 @@
-from squad.lodge import sgt_list, envs
-import datetime as dt
+import datetime
+from squad.accommodations import *
 
-# MaxDB Monitoring
-def supervision(env):
-    with open(f'squad/soldiers-bedroom/{env}_FILE2.txt', 'r') as f:
-        content = f.readlines()
-        content = [x.strip('\n') for x in content]
-        content = [x.strip(' %') for x in content]
-        content = [x.replace(' Days', '') for x in content]
-    return content
+def verify_soldier(operator, sd_value, crit_limit):
+    if operator == 0:
+        verification = str(sd_value) == crit_limit
+        return verification
 
-def maxdb_moni(env, limit):
-    content = supervision(env)
-    sd_num = 0
-    sd_name = content[0][:19] 
-    sd_val = str(content[0][22:])
-    sd_stts = int
-    sd_prio = 1
-    sd_hour = dt.datetime.now()
+    elif operator <= 1:
+        verification = float(sd_value) <= crit_limit
+        return verification
 
-    if sd_val != limit:
-        sd_stts = 1
-    else:
-        sd_stts = 0
+    elif operator == 7:
+        return "SKIP"
 
-    sgt_list[sd_num] = {
-        'SD_Number': sd_num, 
-        'SD_Name': sd_name,
-        'SD_Value': sd_val,
-        'SD_Status': sd_stts,
-        'SD_Priority': sd_prio,
-        'SD_Hour': sd_hour
-        }
-def data_use(env, limit):
-    content = supervision(env)
-    sd_num = 1
-    sd_name = content[1][:25]
-    sd_val = float(content[1][28:])
-    sd_stts = int
-    sd_prio = 2
-    sd_hour = dt.datetime.now()
+def enlist_soldier(env, new_soldier):
+    if env == 'ED1':
+        ed1_soldiers.append(new_soldier)   
+    if env == 'EQ1':
+        eq1_soldiers.append(new_soldier)   
+    if env == 'EP1':
+        ep1_soldiers.append(new_soldier)   
+    if env == 'GRB':
+        grb_soldiers.append(new_soldier)   
+    if env == 'GRC':
+        grc_soldiers.append(new_soldier)   
+    if env == 'SLM':
+        slm_soldiers.append(new_soldier)
+    return  
 
-    if sd_val >= limit:
-        sd_stts = 1
-    else:
-        sd_stts = 0
+def enlist_prisoner(env, npun, credentials):
+    if env == 'ED1':
+        ed1_prisoners[npun] = credentials
+        return ed1_prisoners[npun]
+    if env == 'EQ1':
+        eq1_prisoners[npun] = credentials
+        return eq1_prisoners[npun]
+    if env == 'EP1':
+        ep1_prisoners[npun] = credentials
+        return ep1_prisoners[npun]
+    if env == 'GRB':
+        grb_prisoners[npun] = credentials
+        return grb_prisoners[npun]
+    if env == 'GRC':
+        grc_prisoners[npun] = credentials
+        return grc_prisoners[npun]
+    if env == 'SLM':
+        slm_prisoners[npun] = credentials
+        return slm_prisoners[npun]
 
-        sgt_list[sd_num] = {
-        'SD_Number': sd_num, 
-        'SD_Name': sd_name,
-        'SD_Value': sd_val,
-        'SD_Status': sd_stts,
-        'SD_Priority': sd_prio,
-        'SD_Hour': sd_hour
-        }
-    return sgt_list[sd_num]
-def log_use(env, limit):
-    content = supervision(env)
-    sd_num = 2
-    sd_name = content[2][:23]
-    sd_val = float(content[2][26:])
-    sd_stts = 1
-    sd_prio = 1
-    sd_hour = dt.datetime.now()
-    
-    if sd_val >= limit:
-        sd_stts = 1
-    else:
-        sd_stts = 0
+def check_prisoners(env):
+    with open(f'{env}/PRISON/dumbsoldiers.log', 'r') as log:
+        log = log.readlines() # Leia linha por linha
+        log = [x.strip('\n') for x in log] # Retire o "\n" do final de cada linha
+        _log = [x.split(',') for x in log] # Separe o dicionário separado por vírgulas
 
-    sgt_list[sd_num] = {
-    'SD_Number': sd_num, 
-    'SD_Name': sd_name,
-    'SD_Value': sd_val,
-    'SD_Status': sd_stts,
-    'SD_Priority': sd_prio,
-    'SD_Hour': sd_hour
-    }
-    return sgt_list[sd_num]
-def datahitrate(env, limit):
-    content = supervision(env)
-    sd_num = 3
-    sd_name = content[3][:33]
-    sd_val = float(content[3][36:])
-    sd_stts = 1
-    sd_prio = 4
-    sd_hour = dt.datetime.now()
+        if len(log) > 0: # Se tiver linhas no log:
+            for line in range(len(log)): # Para cada linha no arquivo .log:
+                npun = int(_log[line][0][11:]) # Obtenha o número desse preso
+                credentials = eval(log[line]) # E as credenciais dele
+                enlist_prisoner(env, npun, credentials) # Passe o quartel, o numero e as credenciais para o SGT enlista
+    return 
 
-    if sd_val >= limit:
-        sd_stts = 1
-    else:
-        sd_stts = 0
+def check_quarter(env):
+    if env == 'ED1':
+        return ed1_soldiers   
+    if env == 'EQ1':
+        return eq1_soldiers   
+    if env == 'EP1':
+        return ep1_soldiers   
+    if env == 'GRB':
+        return grb_soldiers   
+    if env == 'GRC':
+        return grc_soldiers   
+    if env == 'SLM':
+        return slm_soldiers
+    return  
 
-    sgt_list[sd_num] = {
-    'SD_Number': sd_num, 
-    'SD_Name': sd_name,
-    'SD_Value': sd_val,
-    'SD_Status': sd_stts,
-    'SD_Priority': sd_prio,
-    'SD_Hour': sd_hour
-    }
-    return sgt_list[sd_num]
-def cataloghitrate(env, limit):
-    content = supervision(env)
-    sd_num = 4
-    sd_name = content[4][:28]
-    sd_val = float(content[4][31:])
-    sd_stts = 1
-    sd_prio = 1
-    sd_hour = dt.datetime.now()
-    
-    if sd_val >= limit:
-        sd_stts = 1
-    else:
-        sd_stts = 0
-
-    sgt_list[sd_num] = {
-    'SD_Number': sd_num, 
-    'SD_Name': sd_name,
-    'SD_Value': sd_val,
-    'SD_Status': sd_stts,
-    'SD_Priority': sd_prio,
-    'SD_Hour': sd_hour
-    }
-    return sgt_list[sd_num]
-def ustask(env, limit):
-    content = supervision(env)
-    sd_num = 5
-    sd_name = content[5][:23]
-    sd_val = float(content[5][26:])
-    sd_stts = 1
-    sd_prio = 2
-    sd_hour = dt.datetime.now()
-
-    if sd_val >= limit:
-        sd_stts = 1
-    else:
-        sd_stts = 0
-
-    sgt_list[sd_num] = {
-    'SD_Number': sd_num, 
-    'SD_Name': sd_name,
-    'SD_Value': sd_val,
-    'SD_Status': sd_stts,
-    'SD_Priority': sd_prio,
-    'SD_Hour': sd_hour
-    }
-    return sgt_list[sd_num]
-def monilog(env, limit):
-    content = supervision(env)
-    sd_num = 6
-    sd_name = content[6][:26]
-    sd_val = float(content[6][30:])
-    sd_stts = 1
-    sd_prio = 3
-    sd_hour = dt.datetime.now()
-   
-    if sd_val >= limit:
-        sd_stts = 1
-    else:
-        sd_stts = 0
-
-    sgt_list[sd_num] = {
-    'SD_Number': sd_num, 
-    'SD_Name': sd_name,
-    'SD_Value': sd_val,
-    'SD_Status': sd_stts,
-    'SD_Priority': sd_prio,
-    'SD_Hour': sd_hour
-    }
-    return sgt_list[sd_num]
-def optistcs(env, limit):
-    content = supervision(env)
-    sd_num = 7
-    sd_name = content[7][:36]
-    sd_val = int(content[7][39:])
-    sd_stts = 1
-    sd_prio = 3
-    sd_hour = dt.datetime.now()
-
-    if sd_val >= limit:
-        sd_stts = 1
-    else:
-        sd_stts = 0
-
-    sgt_list[sd_num] = {
-    'SD_Number': sd_num, 
-    'SD_Name': sd_name,
-    'SD_Value': sd_val,
-    'SD_Status': sd_stts,
-    'SD_Priority': sd_prio,
-    'SD_Hour': sd_hour
-    }
-    return sgt_list[sd_num]
-def bkp(env, limit):
-    content = supervision(env)
-    sd_num = 8
-    sd_name = content[8][:48]
-    sd_val = int(content[8][51:])
-    sd_stts = 1
-    sd_prio = 1
-    sd_hour = dt.datetime.now()
-  
-    if sd_val >= limit:
-        sd_stts = 1
-    else:
-        sd_stts = 0
-
-    sgt_list[sd_num] = {
-    'SD_Number': sd_num, 
-    'SD_Name': sd_name,
-    'SD_Value': sd_val,
-    'SD_Status': sd_stts,
-    'SD_Priority': sd_prio,
-    'SD_Hour': sd_hour
-    }
-    return sgt_list[sd_num]
-def badidx(env, limit):
-    content = supervision(env)
-    sd_num = 9
-    sd_name = content[9][:33]
-    sd_val = int(content[9][36:])
-    sd_stts = 1
-    sd_prio = 3
-    sd_hour = dt.datetime.now()
-
-    if sd_val >= limit:
-        sd_stts = 1
-    else:
-        sd_stts = 0
-
-    sgt_list[sd_num] = {
-    'SD_Number': sd_num, 
-    'SD_Name': sd_name,
-    'SD_Value': sd_val,
-    'SD_Status': sd_stts,
-    'SD_Priority': sd_prio,
-    'SD_Hour': sd_hour
-    }
-    return sgt_list[sd_num]
-def dbanly(env, limit):
-    content = supervision(env)
-    sd_num = 12
-    sd_name = content[12][:42]
-    sd_val = str(content[12][45:])
-    sd_stts = 1
-    sd_prio = 3
-    sd_hour = dt.datetime.now()
-
-    if sd_val != limit:
-        sd_stts = 1
-    else:
-        sd_stts = 0
-
-    sgt_list[sd_num] = {
-    'SD_Number': sd_num, 
-    'SD_Name': sd_name,
-    'SD_Value': sd_val,
-    'SD_Status': sd_stts,
-    'SD_Priority': sd_prio,
-    'SD_Hour': sd_hour
-    }
-    return sgt_list[sd_num]
-def comexec(env, limit):
-    content = supervision(env)
-    sd_num = 13
-    sd_name = content[13][:43]
-    sd_val = str(content[13][46:])
-    sd_stts = 1
-    sd_prio = 1
-    sd_hour = dt.datetime.now()
-
-    if sd_val != limit:
-        sd_stts = 1
-    else:
-        sd_stts = 0
-
-    sgt_list[sd_num] = {
-    'SD_Number': sd_num, 
-    'SD_Name': sd_name,
-    'SD_Value': sd_val,
-    'SD_Status': sd_stts,
-    'SD_Priority': sd_prio,
-    'SD_Hour': sd_hour
-    }
-    return sgt_list[sd_num]
-def statexec(env, limit):
-    content = supervision(env)
-    sd_num = 14
-    sd_name = content[14][:46]
-    sd_val = str(content[14][47:])
-    sd_stts = 1
-    sd_prio = 1
-    sd_hour = dt.datetime.now()
-
-    if sd_val != limit:
-        sd_stts = 1
-    else:
-        sd_stts = 0
-
-    sgt_list[sd_num] = {
-    'SD_Number': sd_num, 
-    'SD_Name': sd_name,
-    'SD_Value': sd_val,
-    'SD_Status': sd_stts,
-    'SD_Priority': sd_prio,
-    'SD_Hour': sd_hour
-    }
-    return sgt_list[sd_num]
-
-def sgt_verify():
-    maxdb_moni(envs[2], limit='ONLINE') # State Current State #! ALERT != "ONLINE"
-    data_use(envs[2], limit=92) # Data Area Used Data Space #! ALERT >= 92
-    log_use(envs[2], limit=50) # Log Area Used Log Space #! ALERT >= 50
-    datahitrate(envs[2], limit=90) # Caches Data Cache Hitrate - total #! ALERT >= 90
-    cataloghitrate(envs[2], limit=90) # Caches Catalog Cache Hitrate #! ALERT >= 90
-    ustask(envs[2], limit=10) # User Tasks Connect Wait #! ALERT >= 10
-    monilog(envs[2], limit=1) # Monitor Log Queue Overflows #! ALERT >= 1
-    optistcs(envs[2], limit=8) # Optimizer Statistics Last Collection #! ALERT >= 8
-    bkp(envs[2], limit=2) # Last Backup Last successful Complete Data Backup #! ALERT >= 2 Days
-    badidx(envs[2], limit=1) # Bad Indexes Number of Bad Indexes #! ALERT >= 1
-    dbanly(envs[2], limit='Activated') # Database Analyzer Status Database Analyzer #! ALERT != Activated
-    comexec(envs[2], limit='Commands can be executed') # DBMRFC and Native SQL DBM Command Execution #! ALERT != Commands can be executed 
-    statexec(envs[2], limit='Statements can be executed') # DBMRFC and Native SQL SQL Statement Execution #! ALERT != Statements can be executed
-    return
+def check_prison(env):
+    if env == 'ED1':
+        return ed1_prisoners   
+    if env == 'EQ1':
+        return eq1_prisoners   
+    if env == 'EP1':
+        return ep1_prisoners   
+    if env == 'GRB':
+        return grb_prisoners   
+    if env == 'GRC':
+        return grc_prisoners   
+    if env == 'SLM':
+        return slm_prisoners
+    return  

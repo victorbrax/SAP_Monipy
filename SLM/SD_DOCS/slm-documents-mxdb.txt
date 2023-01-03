@@ -1,0 +1,15 @@
+State Current State = ONLINE
+Data Area Used Data Space = 90 %
+Log Area Used Log Space = 10 %
+Caches Data Cache Hitrate - total = 79.95 %
+Caches Catalog Cache Hitrate = 79.37 %
+User Tasks Connect Wait = 21
+Monitor Log Queue Overflows = 0.0
+Optimizer Statistics Last Collection = 0 Days
+Last Backup Last successful Complete Data Backup = 0 Days
+Bad Indexes Number of Bad Indexes = 0
+Database Structure Check Last Successful Check = 9999 Days
+Database Structure Check Last Check Return Code = No data consistency check in the last three months
+Database Analyzer Status Database Analyzer = Activated
+DBMRFC and Native SQL DBM Command Execution = Commands can be executed
+DBMRFC and Native SQL SQL Statement Execution = Statements can be executed
