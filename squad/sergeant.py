@@ -36,6 +36,21 @@ def add_prisoner(env, npun, credentials):
         slm_prisoners[npun] = credentials
         return slm_prisoners[npun]
 
+def what_command(env):
+    if env == 'ED1':
+        return cED1   
+    elif env == 'EQ1':
+        return cEQ1   
+    elif env == 'EP1':
+        return cEP1   
+    elif env == 'GRB':
+        return cGRB   
+    elif env == 'GRC':
+        return cGRB   
+    elif env == 'SLM':
+        return cSLM
+    return  
+
 def what_barracks(env):
     if env == 'ED1':
         return ed1_soldiers   

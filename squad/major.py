@@ -15,16 +15,21 @@ def check_prisoners(env):
     return
 
 def register_soldier(env):
-    with open(f'barracks/{env}/SD_DOCS/{env}-documents-mxdb.txt', 'r') as file:
+    with open(f'barracks/{env}/SD_DOCS/{env}-documents-2.txt', 'r') as file: #! MaxDB (2) Only
         file = file.readlines()
-        file = [line.strip('\n') for line in file]
-        file = [line.strip(' %') for line in file]
-        file = [line.replace(' Days', '') for line in file]
+        
+        if file[0] == "No information gathered! System up?":
+            return print(f'The dove not find {env}!')
 
-        for idx, line in enumerate(file):
-            line = line.split(' = ')
-            new_soldier = Soldier(nm=line[0], num=idx, brrk=env, hr=datetime.datetime.now(), val=line[1])
-            enlist_soldier(env, new_soldier)
+        else:
+            file = [line.strip('\n') for line in file]
+            file = [line.strip(' %') for line in file]
+            file = [line.replace(' Days', '') for line in file]
+            
+            for idx, line in enumerate(file):
+                line = line.split(' = ')
+                new_soldier = Soldier(nm=line[0], num=idx, brrk=env, hr=datetime.datetime.now(), val=line[1])
+                enlist_soldier(env, new_soldier)
     return
 
 def punish_soldier(env, SD_Num, SD_Nm, SD_env, SD_hr, SD_val):
@@ -43,18 +48,16 @@ def judge_soldiers(env):
 
         verification = what_operator(opt, sd.value, lmt)
 
-        if verification == False:
+        if verification == False: # False = Bad Soldier
             prisoners = what_prison(env)
 
             if sd.number in prisoners.keys():
                 sd_delta = sd.hour - prisoners[sd.number]["Hour"]
-
                 if sd_delta.total_seconds() >= 43200:
-                    print(f'{env}: Novo soldado punido por mais de 12h!')
-                    print(f'Soldado {sd.number}, {sd.name} | Valor: {sd.value}')
+                    print(f'Novo soldado punido (+12h): {sd.number}, {sd.name} | Valor: {sd.value}')
                     punish_soldier(env, sd.number, sd.name, sd.barracks, datetime.datetime.now(), sd.value)
+          
             else:
                 punish_soldier(env, sd.number, sd.name, sd.barracks, datetime.datetime.now(), sd.value)
-                print(f'{env}: Novo soldado punido, email enviado!')
-                print(f'Soldado {sd.number}, {sd.name} | Valor: {sd.value}')
+                print(f'Novo soldado punido: {sd.number}, {sd.name} | Valor: {sd.value}')
     return
